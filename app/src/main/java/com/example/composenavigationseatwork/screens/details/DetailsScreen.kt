@@ -36,7 +36,7 @@ fun DetailsScreen(
         )
 
         Text(
-            text = "Student ID: 1001",
+            text = "Student ID: 23-1727-857",
             style = MaterialTheme.typography.bodyLarge
         )
 
