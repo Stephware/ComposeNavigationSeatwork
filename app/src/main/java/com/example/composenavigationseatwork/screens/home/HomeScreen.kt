@@ -1,6 +1,5 @@
 package com.example.composenavigationseatwork.screens.home
 
-import android.R
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,7 +9,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -59,7 +60,7 @@ fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -68,145 +69,163 @@ fun HomeScreen(
             style = MaterialTheme.typography.headlineMedium
         )
 
-        Spacer(
-            modifier = Modifier.height(16.dp)
-        )
-
         Text(
-            text = "Student ID",
-            modifier = Modifier.align(Alignment.Start)
+            text = "Enter and review your student details",
+            style = MaterialTheme.typography.bodyMedium
         )
 
-        TextField(
-            value = studentId,
-            onValueChange = {
-                studentId = it
-                errorMessage = ""
-            },
+        Spacer(
+            modifier = Modifier.height(20.dp)
+        )
+
+        Card(
             modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
-
-        Text(
-            text = "Name",
-            modifier = Modifier.align(Alignment.Start)
-        )
-
-        TextField(
-            value = name,
-            onValueChange = {
-                name = it
-                errorMessage = ""
-            },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
-
-        Text(
-            text = "Course",
-            modifier = Modifier.align(Alignment.Start)
-        )
-
-        TextField(
-            value = course,
-            onValueChange = {
-                course = it
-                errorMessage = ""
-            },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
-
-        Text(
-            text = "Year Level",
-            modifier = Modifier.align(Alignment.Start)
-        )
-
-        TextField(
-            value = yearLevel,
-            onValueChange = {
-                yearLevel = it
-            },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(
-            modifier = Modifier.height(16.dp)
-        )
-
-        Text(
-            text = "Login Attempts: $loginAttempts",
-            style = MaterialTheme.typography.bodyLarge
-        )
-
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
-
-        Button(
-            onClick = {
-                loginAttempts++
-            }
         ) {
-            Text(text = "Add Attempt")
-        }
+            Column(
+                modifier = Modifier.padding(20.dp)
+            ) {
+                TextField(
+                    value = studentId,
+                    onValueChange = {
+                        studentId = it
+                        errorMessage = ""
+                    },
+                    label = {
+                        Text(text = "Student ID")
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
 
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
+                Spacer(
+                    modifier = Modifier.height(12.dp)
+                )
 
-        Button(
-            onClick = {
-                studentId = ""
-                name = ""
-                course = ""
-                loginAttempts = 0
-                errorMessage = ""
-                yearLevel = ""
-            }
-        ) {
-            Text(text = "Clear")
-        }
+                TextField(
+                    value = name,
+                    onValueChange = {
+                        name = it
+                        errorMessage = ""
+                    },
+                    label = {
+                        Text(text = "Name")
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
 
-        if (errorMessage.isNotEmpty()) {
-            Spacer(
-                modifier = Modifier.height(8.dp)
-            )
+                Spacer(
+                    modifier = Modifier.height(12.dp)
+                )
 
-            Text(
-                text = errorMessage
-            )
-        }
+                TextField(
+                    value = course,
+                    onValueChange = {
+                        course = it
+                        errorMessage = ""
+                    },
+                    label = {
+                        Text(text = "Course")
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
 
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
+                Spacer(
+                    modifier = Modifier.height(12.dp)
+                )
 
-        Button(
-            onClick = {
-                errorMessage = when {
-                    studentId.isBlank() -> "Student ID is required."
-                    name.isBlank() -> "Name is required."
-                    course.isBlank() -> "Course is required."
-                    yearLevel.isBlank() -> "Year Level is required."
-                    else -> ""
+                TextField(
+                    value = yearLevel,
+                    onValueChange = {
+                        yearLevel = it
+                    },
+                    label = {
+                        Text(text = "Year Level")
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+
+                Spacer(
+                    modifier = Modifier.height(20.dp)
+                )
+
+                Text(
+                    text = "Login Attempts",
+                    style = MaterialTheme.typography.labelLarge
+                )
+
+                Text(
+                    text = "$loginAttempts",
+                    style = MaterialTheme.typography.headlineSmall
+                )
+
+                Spacer(
+                    modifier = Modifier.height(8.dp)
+                )
+
+                OutlinedButton(
+                    onClick = {
+                        loginAttempts++
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "Add Attempt")
                 }
 
-                if (errorMessage.isEmpty()) {
-                    showDialog = true
+                if (errorMessage.isNotEmpty()) {
+                    Spacer(
+                        modifier = Modifier.height(12.dp)
+                    )
+
+                    Text(
+                        text = errorMessage,
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+
+                Spacer(
+                    modifier = Modifier.height(20.dp)
+                )
+
+                Button(
+                    onClick = {
+                        errorMessage = when {
+                            studentId.isBlank() -> "Student ID is required."
+                            name.isBlank() -> "Name is required."
+                            course.isBlank() -> "Course is required."
+                            else -> ""
+                        }
+
+                        if (errorMessage.isEmpty()) {
+                            showDialog = true
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "View Details")
+                }
+
+                Spacer(
+                    modifier = Modifier.height(8.dp)
+                )
+
+                OutlinedButton(
+                    onClick = {
+                        studentId = ""
+                        name = ""
+                        course = ""
+                        yearLevel = ""
+                        loginAttempts = 0
+                        errorMessage = ""
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "Clear")
                 }
             }
-        ) {
-            Text(text = "View Details")
         }
     }
 

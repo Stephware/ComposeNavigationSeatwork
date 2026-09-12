@@ -70,7 +70,10 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                 course = course,
                 yearLevel = yearLevel,
                 onEdit = {
-                    navController.popBackStack()
+                    navController.popBackStack(
+                        route = Screen.Home.route,
+                        inclusive = false
+                    )
                 },
                 onBack = {
                     navController.popBackStack()

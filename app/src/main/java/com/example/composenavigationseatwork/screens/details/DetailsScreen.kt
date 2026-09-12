@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,7 +30,7 @@ fun DetailsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -38,65 +39,71 @@ fun DetailsScreen(
             style = MaterialTheme.typography.headlineMedium
         )
 
+        Text(
+            text = "Review your student information",
+            style = MaterialTheme.typography.bodyMedium
+        )
+
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(20.dp)
         )
 
         Card(
             modifier = Modifier.fillMaxWidth()
         ) {
             Column(
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(20.dp)
             ) {
                 Text(
                     text = "Student ID",
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.labelMedium
                 )
 
                 Text(
                     text = studentId,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.titleMedium
                 )
 
                 Spacer(
-                    modifier = Modifier.height(16.dp)
+                    modifier = Modifier.height(18.dp)
                 )
 
                 Text(
                     text = "Name",
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.labelMedium
                 )
 
                 Text(
                     text = name,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.titleMedium
                 )
 
                 Spacer(
-                    modifier = Modifier.height(16.dp)
+                    modifier = Modifier.height(18.dp)
                 )
 
                 Text(
                     text = "Course",
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.labelMedium
                 )
 
                 Text(
                     text = course,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.titleMedium
                 )
 
                 Spacer(
-                    modifier = Modifier.height(16.dp)
+                    modifier = Modifier.height(18.dp)
                 )
 
                 Text(
                     text = "Year Level",
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.labelMedium
                 )
+
                 Text(
                     text = yearLevel,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.titleMedium
                 )
             }
         }
@@ -106,7 +113,8 @@ fun DetailsScreen(
         )
 
         Button(
-            onClick = onEdit
+            onClick = onEdit,
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Edit Information")
         }
@@ -115,8 +123,9 @@ fun DetailsScreen(
             modifier = Modifier.height(8.dp)
         )
 
-        Button(
-            onClick = onBack
+        OutlinedButton(
+            onClick = onBack,
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Back")
         }
