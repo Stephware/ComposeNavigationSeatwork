@@ -4,9 +4,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,6 +19,11 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DetailsScreen(
+    studentId: String,
+    name: String,
+    course: String,
+    yearLevel: String,
+    onEdit: () -> Unit,
     onBack: () -> Unit
 ) {
     Column(
@@ -35,28 +42,77 @@ fun DetailsScreen(
             modifier = Modifier.height(16.dp)
         )
 
-        Text(
-            text = "Student ID: 23-1727-857",
-            style = MaterialTheme.typography.bodyLarge
-        )
+        Card(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = "Student ID",
+                    style = MaterialTheme.typography.bodySmall
+                )
 
-        Text(
-            text = "Name: Stephen Kurl G. Pinacate",
-            style = MaterialTheme.typography.bodyLarge
-        )
+                Text(
+                    text = studentId,
+                    style = MaterialTheme.typography.bodyLarge
+                )
 
-        Text(
-            text = "Course: BS Computer Engineering",
-            style = MaterialTheme.typography.bodyLarge
-        )
+                Spacer(
+                    modifier = Modifier.height(16.dp)
+                )
 
-        Text(
-            text = "Year: 4",
-            style = MaterialTheme.typography.bodyLarge
-        )
+                Text(
+                    text = "Name",
+                    style = MaterialTheme.typography.bodySmall
+                )
+
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+
+                Spacer(
+                    modifier = Modifier.height(16.dp)
+                )
+
+                Text(
+                    text = "Course",
+                    style = MaterialTheme.typography.bodySmall
+                )
+
+                Text(
+                    text = course,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+
+                Spacer(
+                    modifier = Modifier.height(16.dp)
+                )
+
+                Text(
+                    text = "Year Level",
+                    style = MaterialTheme.typography.bodySmall
+                )
+                Text(
+                    text = yearLevel,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
+        }
 
         Spacer(
             modifier = Modifier.height(24.dp)
+        )
+
+        Button(
+            onClick = onEdit
+        ) {
+            Text(text = "Edit Information")
+        }
+
+        Spacer(
+            modifier = Modifier.height(8.dp)
         )
 
         Button(
@@ -71,6 +127,11 @@ fun DetailsScreen(
 @Composable
 fun DetailsScreenPreview() {
     DetailsScreen(
+        studentId = "23-1727-857",
+        name = "Stephen Kurl G. Pinacate",
+        course = "BS Computer Engineering",
+        yearLevel = "4-A",
+        onEdit = {},
         onBack = {}
     )
 }

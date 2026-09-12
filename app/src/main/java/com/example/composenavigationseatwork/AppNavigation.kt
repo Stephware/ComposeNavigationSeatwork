@@ -2,9 +2,11 @@ package com.example.composenavigationseatwork
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.composenavigationseatwork.screens.Screen
 import com.example.composenavigationseatwork.screens.details.DetailsScreen
 import com.example.composenavigationseatwork.screens.home.HomeScreen
@@ -20,14 +22,56 @@ fun AppNavigation(modifier: Modifier = Modifier) {
     ) {
         composable(Screen.Home.route) {
             HomeScreen(
-                onViewDetails = {
-                    navController.navigate(Screen.Details.route)
+                onViewDetails = { studentId, name, course, yearLevel ->
+                    navController.navigate(
+                        Screen.Details.createRoute(
+                            studentId = studentId,
+                            name = name,
+                            course = course,
+                            yearLevel = yearLevel
+                        )
+                    )
                 }
             )
         }
 
-        composable(Screen.Details.route) {
+        composable(
+            route = Screen.Details.route,
+            arguments = listOf(
+                navArgument("studentId") {
+                    type = NavType.StringType
+                },
+                navArgument("name") {
+                    type = NavType.StringType
+                },
+                navArgument("course") {
+                    type = NavType.StringType
+                },
+                navArgument("yearLevel"){
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            val studentId =
+                backStackEntry.arguments?.getString("studentId") ?: ""
+
+            val name =
+                backStackEntry.arguments?.getString("name") ?: ""
+
+            val course =
+                backStackEntry.arguments?.getString("course") ?: ""
+
+            val yearLevel =
+                backStackEntry.arguments?.getString("yearLevel") ?: ""
+
             DetailsScreen(
+                studentId = studentId,
+                name = name,
+                course = course,
+                yearLevel = yearLevel,
+                onEdit = {
+                    navController.popBackStack()
+                },
                 onBack = {
                     navController.popBackStack()
                 }
