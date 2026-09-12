@@ -1,6 +1,6 @@
 package com.example.composenavigationseatwork.ui.theme
 
-import android.app.Activity
+import androidx.compose.ui.graphics.Color
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -12,32 +12,51 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = DarkBlue,
+    secondary = DarkBlue,
+    tertiary = DarkBlue,
+
+    background = DarkSurface,
+    surface = DarkSurface,
+    surfaceVariant = DarkCard
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
+    primary = NavyBlue,
     onPrimary = Color.White,
+
+    primaryContainer = LightBlue,
+    onPrimaryContainer = DarkText,
+
+    secondary = NavyBlue,
     onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+
+    tertiary = NavyBlue,
+
+    background = AppBackground,
+    onBackground = DarkText,
+
+    surface = AppBackground,
+    onSurface = DarkText,
+
+    surfaceVariant = FieldBackground,
+    onSurfaceVariant = GreyText,
+
+    surfaceContainerLowest = Color.White,
+    surfaceContainerLow = CardBackground,
+    surfaceContainer = CardBackground,
+    surfaceContainerHigh = FieldBackground,
+    surfaceContainerHighest = FieldBackground,
+
+    outline = BorderColor,
+    outlineVariant = Color(0xFFB8C4D1)
 )
 
 @Composable
 fun ComposeNavigationSeatworkTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
